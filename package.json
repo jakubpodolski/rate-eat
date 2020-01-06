@@ -1,0 +1,10 @@
+{
+    "name": "rate-eat",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {},
+    "scripts": {
+        "client": "cd ./client && npm run-script start",
+        "server": "react-scripts build"
+    }
+}
