@@ -1,24 +1,24 @@
-#Stack: 
-##Front
+# Stack: 
+## Front
   - React
   - TypeSciprt
   - Material UI (maybe SCSS)
-##Back
+## Back
   - NodeJS
   - ExpressJS
   OR
   - Java\Springboot
     
-##DB
+## DB
   - MongoDB
   OR
   - PostgreSQL
 
-##Test
+## Test
   - Jest+Enzyme
   - Cypress
     
-###Additional
+### Additional
   - Amazon AWS
   - Elastic Bean Stack
   - Continous Integration
