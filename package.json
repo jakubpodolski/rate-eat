@@ -5,6 +5,7 @@
     "dependencies": {},
     "scripts": {
         "client": "cd ./client && npm run-script start",
-        "server": "react-scripts build"
+        "server": "cd ./server && node ./src/server.js",
+        "start": "npm run client && npm run server"
     }
 }

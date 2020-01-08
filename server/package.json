@@ -1,0 +1,12 @@
+{
+    "name": "rate-eat-server",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "scripts": {
+        "client": "cd ./client && npm run-script start",
+        "server": "react-scripts build"
+    }
+}
