@@ -25,4 +25,4 @@ UserSchema.method.validatePassword = (pass) => (
     bycrypt.compareSync(pass, this.password)
 );
 
-export default mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
