@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const crypro = require('crypto');
+const bycrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -17,6 +17,12 @@ const UserSchema = new mongoose.Schema({
 
 });
 
-UserSchema.method.generateHash = (pass) =>  crypro.createHash('sha256').update(pass);
+UserSchema.method.generateHash = (pass) => (
+    bycrypt.hashSync(pass, bycrypt.genSaltSync(), null)
+);
+
+UserSchema.method.validatePassword = (pass) => (
+    bycrypt.compareSync(pass, this.password)
+);
 
 export default mongoose.model('User', UserSchema);
