@@ -17,11 +17,11 @@ const UserSchema = new mongoose.Schema({
 
 });
 
-UserSchema.method.generateHash = (pass) => (
+UserSchema.methods.generateHash = (pass) => (
     bycrypt.hashSync(pass, bycrypt.genSaltSync(), null)
 );
 
-UserSchema.method.validatePassword = (pass) => (
+UserSchema.methods.validatePassword = (pass) => (
     bycrypt.compareSync(pass, this.password)
 );
 
