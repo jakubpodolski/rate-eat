@@ -6,6 +6,7 @@ const port = process.env.PORT || 8080;
 const isDev = true;
 
 const signup = require('./routes/signup')
+const singin = require('./routes/signin')
 
 
 mongoose.connect(isDev ? config.db_dev : config.db, { 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 signup(app)
+singin(app)
 
 
 app.get('/', (req, res) => console.log("Hello"));

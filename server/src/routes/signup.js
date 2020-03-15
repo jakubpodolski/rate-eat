@@ -10,17 +10,17 @@ module.exports = (app) => {
         } = body
 
         if (!email) return res.send({
-            succes: false,
+            success: false,
             message: "Error: Email cannot be null"
         })
 
         if (!login) return res.send({
-            succes: false,
+            success: false,
             message: "Error: Login cannot be null"
         })
 
         if (!password) return res.send({
-            succes: false,
+            successs: false,
             message: "Error: Password cannot be null"
         })
 
@@ -28,11 +28,11 @@ module.exports = (app) => {
             email: email
         }, (err, existingUser) => {
             if (err) return res.send({
-                succes: false,
+                success: false,
                 message: "Error: Server error"
             })
             else if (existingUser.length) return res.send({
-                succes: false,
+                success: false,
                 message: "Error: User exists"
             })
 
@@ -44,11 +44,11 @@ module.exports = (app) => {
 
             newUser.save((err, user) => {
                 if (err) return res.send({
-                    succes: false,
+                    success: false,
                     message: "Error: Server error"
                 })
                 return res.send({
-                    succes: true,
+                    success: true,
                     message: "User created"
                 })
             })
