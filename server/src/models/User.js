@@ -17,12 +17,12 @@ const UserSchema = new mongoose.Schema({
 
 });
 
-UserSchema.methods.generateHash = (pass) => (
-    bycrypt.hashSync(pass, bycrypt.genSaltSync(), null)
-);
+UserSchema.methods.generateHash = function (pass) {
+    return bycrypt.hashSync(pass, bycrypt.genSaltSync(), null)
+};
 
-UserSchema.methods.validatePassword = (pass) => (
-    bycrypt.compareSync(pass, this.password)
-);
+UserSchema.methods.validatePassword = function (pass) {
+    return bycrypt.compareSync(pass, this.password)
+};
 
 module.exports = mongoose.model('User', UserSchema);

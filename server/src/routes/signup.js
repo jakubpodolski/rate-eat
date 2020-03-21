@@ -7,22 +7,22 @@ module.exports = (app) => {
             email,
             login,
             password
-        } = body
+        } = body;
 
         if (!email) return res.send({
             success: false,
             message: "Error: Email cannot be null"
-        })
+        });
 
         if (!login) return res.send({
             success: false,
             message: "Error: Login cannot be null"
-        })
+        });
 
         if (!password) return res.send({
             successs: false,
             message: "Error: Password cannot be null"
-        })
+        });
 
         User.find({
             email: email
