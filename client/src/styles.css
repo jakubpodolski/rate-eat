@@ -1,0 +1,16 @@
+:root {
+    --some-color: red;
+}
+
+@define-mixin xd {
+    color: (--testvar);
+}
+
+.head {
+    font-size: 38px;
+
+    & .subtitle {
+        color: var(--some-color);
+    }
+}
+
