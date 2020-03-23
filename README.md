@@ -34,3 +34,7 @@ Runs server and client app
   - Elastic Bean Stack
   - Continous Integration
 
+# Possible colors? 
+https://coolors.co/635380-90708c-ace4aa-4c4d49-e1cdb5
+https://coolors.co/7e8287-2a3d45-ace4aa-4c4d49-9da39a
+https://coolors.co/7e8287-2a3d45-ace4aa-4c4d49-d7263d

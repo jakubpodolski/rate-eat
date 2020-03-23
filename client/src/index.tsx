@@ -1,14 +1,11 @@
 import React, {FC} from 'react';
 import ReactDOM from 'react-dom';
-import "./styles.css"
+import "./index.css"
 
 const App: FC = () => {
-  return <h1 className="head">
-    Hello Wepack!
-    <span className="subtitle">
-      I also have styles
-    </span>
-  </h1>;
+  return <div className="app">
+    huh?
+  </div>
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));

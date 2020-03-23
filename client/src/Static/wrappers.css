@@ -1,0 +1,3 @@
+@define-mixin wrapper {
+    grid-template-colums: repeat(12, 1fr)
+}
