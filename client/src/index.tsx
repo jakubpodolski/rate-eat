@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
 import ReactDOM from 'react-dom';
+import {Login} from './Components/LogIn/Login'
 import "./index.css"
 
 const App: FC = () => {
   return <div className="app">
-    huh?
+    <Login handleLogin={(e) => console.log('dip')}/>
   </div>
 };
 

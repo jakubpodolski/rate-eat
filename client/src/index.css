@@ -1,3 +1,6 @@
+@import './Static/root.css';
+
 .app {
-    background-color: var(--background-color);
+    @mixin grid;
+    @mixin wrapper;
 }

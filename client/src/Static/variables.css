@@ -1,3 +1,9 @@
 :root {
-    --background-color: #2a3d45;
+    /* wrappers */
+    --wrapper-main: 1440px;
+
+    /* colors */
+    
+    --test: #FF00FF;
+    --newVar: #00FF00;
 }
