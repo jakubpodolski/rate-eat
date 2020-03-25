@@ -3,7 +3,9 @@
     --wrapper-main: 1440px;
 
     /* colors */
-    
-    --test: #FF00FF;
-    --newVar: #00FF00;
+    --primary-color: #7e8287;
+    --secondary-color: #4c4d49;
+    --primary-button: #6699ff;
+    --error-color: #d7263d;
+    --sucess-color: #63d471;    
 }

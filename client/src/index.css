@@ -1,4 +1,5 @@
 @import './Static/root.css';
+@import './Static/variables.css';
 
 .app {
     @mixin grid;

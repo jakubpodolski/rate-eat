@@ -1,12 +1,14 @@
 import React, {FC} from 'react';
 import ReactDOM from 'react-dom';
-import {Login} from './Components/LogIn/Login'
+import {LandingPage} from './Components/LandingPage/LandingPage';
 import "./index.css"
 
 const App: FC = () => {
-  return <div className="app">
-    <Login handleLogin={(e) => console.log('dip')}/>
-  </div>
+  return (
+    <article className="app">
+      <LandingPage />
+    </article>
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));
