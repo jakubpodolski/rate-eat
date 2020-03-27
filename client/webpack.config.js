@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   watch: true,
@@ -19,9 +18,6 @@ module.exports = {
       extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].css"
-    }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       inject: false,
@@ -35,7 +31,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
           'postcss-loader'
         ]
