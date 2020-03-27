@@ -16,18 +16,36 @@ export const Login: FC<Login> = ({
     const [pass, setPass] = useState('');
 
     return (
-        <form className="login" onSubmit={(e) => handleLogin(e, email, pass)}>
-            <input
-                className="login__input"
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                className="login__input"
-                value={pass} 
-                onChange={(e) => setPass(e.target.value)}
-            />
-            <input className="login__button" type="submit" value="Login" />
-        </form>
+        <div className="login">
+            <span>
+                logo
+            </span>
+            <h2 className="login__title">
+                Sign in to RateEat
+            </h2>
+            <form className="login__form" onSubmit={(e) => handleLogin(e, email, pass)}>
+                <label htmlFor="login">
+                    Email address
+                </label>
+                <input
+                    id="login"
+                    className="login__input"
+                    type="text"
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <label htmlFor="password">
+                    Password
+                </label>
+                <input
+                    id="password"
+                    className="login__input"
+                    type="password"
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
+                />
+                <input className="login__button" type="submit" value="Login" />
+            </form>
+        </div>
     );
 };

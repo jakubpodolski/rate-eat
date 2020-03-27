@@ -2,6 +2,9 @@
     /* wrappers */
     --wrapper-main: 1440px;
 
+    /* fonts */
+    --primary-font: 'Montserrat';
+
     /* colors */
     --primary-color: #7e8287;
     --secondary-color: #4c4d49;

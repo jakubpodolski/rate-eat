@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import {Login} from '../LogIn/Login';
+import {Signup} from '../Singup/Signup';
+import {API_URL} from '../helpers';
+
 
 import './LandingPage.css'
 
 type LandingPageState = {
     displaySignup: boolean
+    signupResponse: {}
 }
 
 export class LandingPage extends Component<{}, LandingPageState> {
@@ -12,28 +16,51 @@ export class LandingPage extends Component<{}, LandingPageState> {
         super(props)
 
         this.state = {
-            displaySignup: false
+            displaySignup: false,
+            signupResponse: {}
         }
     }
 
     handleLogin (e: React.FormEvent<HTMLFormElement>, email: string, pass: string) {
         e.preventDefault();
-        console.log(email, pass)
+        // fetch(API_URL)
+    }
+
+    async handleSignup (e: React.FormEvent<HTMLFormElement>, email: string, login: string, pass: string) {
+        e.preventDefault();
+        const createUser = fetch(`${API_URL}account/signup`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                login,
+                pass
+            })
+        })
+
+        await createUser.then(res => console.log(res))
     }
 
     render() {
         return (
             <section className="landingPage">
-                <Login handleLogin={this.handleLogin}/>
 
                 {this.state.displaySignup ? (
-                    <button className="landingPage__changeForm" onClick={() => this.setState({ displaySignup: false})}>
-                        Have an account? Sign in insted
-                    </button>
+                    <>
+                        <Signup handleSignup={this.handleSignup}/>
+                        <button className="landingPage__changeForm" onClick={() => this.setState({ displaySignup: false})}>
+                            Have an account? Sign in insted
+                        </button>
+                    </>
                 ) : (
-                    <button className="landingPage__changeForm" onClick={() => this.setState({ displaySignup: true})}>
-                        No account? Sign up!
-                    </button>
+                    <>
+                        <Login handleLogin={this.handleLogin}/>
+                        <button className="landingPage__changeForm" onClick={() => this.setState({ displaySignup: true})}>
+                            No account? Sign up!
+                        </button>
+                    </>
                 )}                
             </section>
         );

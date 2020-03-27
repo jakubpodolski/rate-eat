@@ -7,3 +7,14 @@ body, #root {
     min-height: 100vh;
     background-color: var(--primary-color);
 }
+
+h1 {
+    font-size: 36px;
+    font-family: var(--primary-font);
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 600;
+    font-family: var(--primary-font);
+}
