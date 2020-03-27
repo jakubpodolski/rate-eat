@@ -24,7 +24,7 @@ export const Login: FC<Login> = ({
                 Sign in to RateEat
             </h2>
             <form className="login__form" onSubmit={(e) => handleLogin(e, email, pass)}>
-                <label htmlFor="login">
+                <label className="login__inputTitle" htmlFor="login">
                     Email address
                 </label>
                 <input
@@ -34,7 +34,7 @@ export const Login: FC<Login> = ({
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <label htmlFor="password">
+                <label className="login__inputTitle" htmlFor="password">
                     Password
                 </label>
                 <input

@@ -8,6 +8,3 @@ body, #root {
     background-color: var(--primary-color);
 }
 
-h2 {
-    @mixin header2;
-}

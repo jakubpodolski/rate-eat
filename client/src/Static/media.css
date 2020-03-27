@@ -1,1 +1,2 @@
+@custom-media --mobileOnly (max-width: 768px);
 @custom-media --tablet (max-width: 1024px);

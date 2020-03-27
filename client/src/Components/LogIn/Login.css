@@ -1,5 +1,12 @@
+.login__title {
+    @mixin h1;
+}
+
 .login__form {
     display: flex;
     flex-direction: column;
-    
+}
+
+.login__inputTitle {
+    @mixin p;
 }
