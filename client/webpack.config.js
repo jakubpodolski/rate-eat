@@ -18,12 +18,24 @@ module.exports = {
   resolve: {
       extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].css"
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: "./public/index.html",
+      filename: "index.html"
+    })
+  ],
   module: {
     rules: [
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader'
         ]
@@ -46,16 +58,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "style.[contenthash].css"
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: "./public/index.html",
-      filename: "index.html"
-    })
-  ]
 };

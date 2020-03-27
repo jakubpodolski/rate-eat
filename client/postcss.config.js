@@ -1,7 +1,8 @@
 module.exports = {
     plugins: {
-      'autoprefixer': true,
+      
       'postcss-normalize': true,
+      'postcss-nesting': true,
       'postcss-mixins': {
         'mixinsDir': 'src/Static/mixins/**/**'
       },
@@ -13,8 +14,14 @@ module.exports = {
         'preserve': false,
         'importFrom': 'src/Static/variables.css'
       },
-      'postcss-nesting': true,
-      'postcss-preset-env': true,
+      'postcss-preset-env': {
+        'stage': 1
+      },
+      'autoprefixer': {
+        "overrideBrowserslist": [
+          "last 2 versions"
+        ],
+      },
       'cssnano': true,
     }
   }
