@@ -16,7 +16,7 @@ export class LandingPage extends Component<{}, LandingPageState> {
         super(props)
 
         this.state = {
-            displaySignup: false,
+            displaySignup: true,
             signupResponse: {}
         }
     }
@@ -46,22 +46,19 @@ export class LandingPage extends Component<{}, LandingPageState> {
     render() {
         return (
             <section className="landingPage">
-
                 {this.state.displaySignup ? (
-                    <>
                         <Signup handleSignup={this.handleSignup}/>
-                        <button className="landingPage__changeForm" onClick={() => this.setState({ displaySignup: false})}>
-                            Have an account? Sign in insted
-                        </button>
-                    </>
                 ) : (
-                    <>
                         <Login handleLogin={this.handleLogin}/>
-                        <button className="landingPage__changeForm" onClick={() => this.setState({ displaySignup: true})}>
-                            No account? Sign up!
-                        </button>
-                    </>
-                )}                
+                )}
+                <div className="landingPage__changeForm">
+                    <button
+                        className="button--secondary"
+                        onClick={() => this.setState({ displaySignup: !this.state.displaySignup})}
+                    >
+                        {this.state.displaySignup ? 'Have an account? Sign in insted' : 'No account? Sign up!'}
+                    </button>
+                </div>
             </section>
         );
     }

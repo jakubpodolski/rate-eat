@@ -1,5 +1,16 @@
+.login {
+    margin: 25px 0 50px;
+    padding: 60px 40px;
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    background-color: white;
+}
+
 .login__title {
     @mixin h1;
+    margin-top: 0;
+    text-align: center;
+    color: var(--secondary-color);
 }
 
 .login__form {
@@ -9,4 +20,19 @@
 
 .login__inputTitle {
     @mixin p;
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin: 5px 0;
+}
+
+.login__input {
+    border-radius: var(--border-radius);
+    height: 15px;
+    padding: 10px 5px;
+}
+
+.login__button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }

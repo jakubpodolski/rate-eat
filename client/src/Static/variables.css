@@ -11,4 +11,7 @@
     --primary-button: #6699ff;
     --error-color: #d7263d;
     --sucess-color: #63d471;    
+
+    /* misc */
+    --border-radius: 3px;
 }

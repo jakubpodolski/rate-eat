@@ -17,9 +17,6 @@ export const Login: FC<Login> = ({
 
     return (
         <div className="login">
-            <span>
-                logo
-            </span>
             <h2 className="login__title">
                 Sign in to RateEat
             </h2>
@@ -44,7 +41,9 @@ export const Login: FC<Login> = ({
                     value={pass}
                     onChange={(e) => setPass(e.target.value)}
                 />
-                <input className="login__button" type="submit" value="Login" />
+                <div className="login__button">
+                    <input className="button--primary" type="submit" value="Login" />
+                </div>
             </form>
         </div>
     );
