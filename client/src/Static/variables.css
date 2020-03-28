@@ -1,17 +1,17 @@
 :root {
-    /* wrappers */
-    --wrapper-main: 1440px;
+  /* wrappers */
+  --wrapper-main: 1440px;
 
-    /* fonts */
-    --primary-font: 'Montserrat';
+  /* fonts */
+  --primary-font: 'Montserrat';
 
-    /* colors */
-    --primary-color: #7e8287;
-    --secondary-color: #4c4d49;
-    --primary-button: #6699ff;
-    --error-color: #d7263d;
-    --sucess-color: #63d471;    
+  /* colors */
+  --primary-color: #7e8287;
+  --secondary-color: #4c4d49;
+  --primary-button: #6699ff;
+  --error-color: #d7263d;
+  --sucess-color: #63d471;    
 
-    /* misc */
-    --border-radius: 3px;
+  /* misc */
+  --border-radius: 3px;
 }

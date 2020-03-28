@@ -3,26 +3,26 @@
 @import './Static/button.css';
 
 .app {
-    @mixin grid;
-    @mixin wrapper;
+  @mixin grid;
+  @mixin wrapper;
 }
 
 h1 {
-    @mixin h1;
+  @mixin h1;
 }
 
 h2 {
-    @mixin h2;
+  @mixin h2;
 }
 
 h3 {
-    @mixin h3;
+  @mixin h3;
 }
 
 h4 {
-    @mixin h4;
+  @mixin h4;
 }
 
 p {
-    @mixin p;
+  @mixin p;
 }

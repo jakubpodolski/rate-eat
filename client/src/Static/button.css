@@ -1,22 +1,22 @@
 .button--primary {
-    margin: 10px 0;
-    padding: 6px 10px;
-    border-radius: var(--border-radius);
-    font-size: 13px;
-    border: none;
-    cursor: pointer;
-    background-color: var(--primary-button);
-    text-transform: uppercase;
-    color: white;
+  margin: 10px 0;
+  padding: 6px 10px;
+  border-radius: var(--border-radius);
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--primary-button);
+  text-transform: uppercase;
+  color: white;
 }
 
 .button--secondary {
-    margin: 10px 0;
-    padding: 6px 10px;
-    border-radius: var(--border-radius);
-    font-size: 13px;
-    border: none;
-    cursor: pointer;
-    background-color: white;
-    color: black;
+  margin: 10px 0;
+  padding: 6px 10px;
+  border-radius: var(--border-radius);
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  background-color: white;
+  color: black;
 }

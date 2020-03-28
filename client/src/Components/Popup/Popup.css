@@ -1,0 +1,27 @@
+.portal {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 160px;
+  border-radius: var(--border-radius);
+
+  &.portal--sucess {
+    background-color: var(--sucess-color);
+  }
+
+  &.portal--fail {
+    background-color: var(--error-color);
+  }
+}
+
+.portal__overlay {
+  background: none;
+}
+
+.portal__message {
+  margin: 0;
+  padding: 10px 5px;
+  text-align: center;
+  color: white;
+}

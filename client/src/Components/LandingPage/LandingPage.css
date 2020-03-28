@@ -1,16 +1,16 @@
 .landingPage {
-    grid-column: 5/9;
+  grid-column: 5/9;
 
-    @media (--tablet) {
-        grid-column: 4/10;
-    }
+  @media (--tablet) {
+    grid-column: 4/10;
+  }
 
-    @media (--mobile) {
-        grid-column: 2/12;
-    }
+  @media (--mobile) {
+    grid-column: 2/12;
+  }
 }
 
 .landingPage__changeForm {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
