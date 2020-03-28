@@ -1,0 +1,40 @@
+.spinner__overlay {
+  position: fixed;
+  inset: 0px;
+  background-color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+
+  & div {
+    @mixin spinnerDot;
+    animation-delay: 0.3s !important;
+    animation: 0.9s bounce infinite alternate;
+  }
+
+  &:before {
+    @mixin spinnerDot;
+    content: '';
+    animation: 0.9s bounce infinite alternate;
+  }
+
+  &:after {
+    @mixin spinnerDot;
+    content: '';
+    animation-delay: 0.6s !important;
+    animation: 0.9s bounce infinite alternate;
+  }
+  
+}
+
+@keyframes bounce {
+  to {
+    opacity: 0.3;
+    transform: translate3d(0, -16px, 0);
+  }
+}

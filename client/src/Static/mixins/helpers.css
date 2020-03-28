@@ -1,0 +1,7 @@
+@define-mixin spinnerDot {
+  width: 16px;
+  height: 16px;
+  margin: 32px 5px;
+  background: var(--secondary-color);
+  border-radius: 50%;
+}

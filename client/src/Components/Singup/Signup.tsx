@@ -47,6 +47,7 @@ export const Signup: FC<Signup> = ({
         <input
           id="password"
           className="signup__input"
+          type="password"
           value={pass} 
           onChange={(e) => setPass(e.target.value)}
         />

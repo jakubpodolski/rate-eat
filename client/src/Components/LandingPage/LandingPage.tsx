@@ -2,14 +2,20 @@ import React, { Component } from 'react';
 import {Login} from '../LogIn/Login';
 import {Signup} from '../Singup/Signup';
 import {Popup} from '../Popup/Popup';
+import {Spinner} from '../Spinner/Spinner';
 import {API_URL} from '../helpers';
 
 import './LandingPage.css'
 
 type LandingPageState = {
+  loading: boolean,
   displaySignup: boolean;
   displayServerResponse: boolean;
   signupResponse: {
+    success?: boolean,
+    message?: string,
+  };
+  loginResponse: {
     success?: boolean,
     message?: string,
   };
@@ -20,20 +26,30 @@ export class LandingPage extends Component<{}, LandingPageState> {
     super(props)
 
     this.state = {
-      displaySignup: true,
+      loading: false,
+      displaySignup: false,
+      displayServerResponse: false,
+      signupResponse: {},
+      loginResponse: {},
+    }
+  }
+
+  flushServerRespons = () => {
+    this.setState({
       displayServerResponse: false,
       signupResponse: {}
-    }
+    })
   }
 
   handleLogin (e: React.FormEvent<HTMLFormElement>, email: string, pass: string) {
     e.preventDefault();
+    this.flushServerRespons()
     // fetch(API_URL)
   }
 
-  async handleSignup (e: React.FormEvent<HTMLFormElement>, email: string, login: string, pass: string) {
+  handleSignup = async (e: React.FormEvent<HTMLFormElement>, email: string, login: string, pass: string) => {
     e.preventDefault();
-    console.log(email, login, pass)
+    this.flushServerRespons()
     const createUser = fetch(`${API_URL}account/signup`, {
       method: 'POST',
       headers: {
@@ -46,13 +62,22 @@ export class LandingPage extends Component<{}, LandingPageState> {
       })
     })
 
+    this.setState({loading: true})
     await createUser.then(res => res.json())
-      .then(res => console.log(res))
+      .then(res => {
+        this.setState({
+          loading: false,
+          signupResponse: res,
+          displayServerResponse: true
+        })
+      })
+      
   }
 
   render() {
     return (
       <section className="landingPage">
+        {this.state.loading && <Spinner />}
         {this.state.displaySignup ? (
           <Signup handleSignup={this.handleSignup}/>
         ) : (

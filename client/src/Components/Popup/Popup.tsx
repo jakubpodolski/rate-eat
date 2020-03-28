@@ -7,18 +7,17 @@ type Popup = {
   data: {
     success?: boolean,
     message?: string
-  }
+  }  
 };
 
 
 export const Popup: FC<Popup> = ({data}) => {
   const [isOpen, setIsOpen] = useState(true);
   useEffect(() => {
-    // setIsOpen(false)
+    setIsOpen(false)
   },[])
-  
+  console.log(data)
   Modal.setAppElement('#root')
-  console.log(data.success)
   return (
     <Modal
       isOpen={isOpen}
