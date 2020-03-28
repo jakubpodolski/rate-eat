@@ -3,15 +3,19 @@ import {Login} from '../LogIn/Login';
 import {Signup} from '../Singup/Signup';
 import {Popup} from '../Popup/Popup';
 import {Spinner} from '../Spinner/Spinner';
-import {API_URL} from '../helpers';
+import {API_URL, APP_NAME, setInStorage} from '../helpers';
 
 import './LandingPage.css'
+
+type LandingPageProps = {
+  moveToLandingPage: (ar: boolean) => void
+}
 
 type LandingPageState = {
   loading: boolean,
   displaySignup: boolean;
   displayServerResponse: boolean;
-  signupResponse: {
+  serverResponse: {
     success?: boolean,
     message?: string,
   };
@@ -21,7 +25,7 @@ type LandingPageState = {
   };
 }
 
-export class LandingPage extends Component<{}, LandingPageState> {
+export class LandingPage extends Component<LandingPageProps, LandingPageState> {
   constructor(props: any) {
     super(props)
 
@@ -29,7 +33,7 @@ export class LandingPage extends Component<{}, LandingPageState> {
       loading: false,
       displaySignup: false,
       displayServerResponse: false,
-      signupResponse: {},
+      serverResponse: {},
       loginResponse: {},
     }
   }
@@ -37,14 +41,45 @@ export class LandingPage extends Component<{}, LandingPageState> {
   flushServerRespons = () => {
     this.setState({
       displayServerResponse: false,
-      signupResponse: {}
+      serverResponse: {}
     })
   }
 
-  handleLogin (e: React.FormEvent<HTMLFormElement>, email: string, pass: string) {
+  handleLogin = async (e: React.FormEvent<HTMLFormElement>, email: string, pass: string) => {
     e.preventDefault();
     this.flushServerRespons()
-    // fetch(API_URL)
+    const signinUser = fetch(`${API_URL}account/signin`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: pass
+      })
+    })
+
+    this.setState({loading: true})
+    await signinUser.then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          setInStorage(APP_NAME, { token: res.token})
+          this.setState({
+            loading: false,
+            serverResponse: res,
+            displayServerResponse: true
+          })
+          // Move to HomePage
+          this.props.moveToLandingPage(true)
+        }
+        else {
+          this.setState({
+            loading: false,
+            serverResponse: res,
+            displayServerResponse: true
+          })
+        }
+      })
   }
 
   handleSignup = async (e: React.FormEvent<HTMLFormElement>, email: string, login: string, pass: string) => {
@@ -67,7 +102,7 @@ export class LandingPage extends Component<{}, LandingPageState> {
       .then(res => {
         this.setState({
           loading: false,
-          signupResponse: res,
+          serverResponse: res,
           displayServerResponse: true
         })
       })
@@ -91,7 +126,7 @@ export class LandingPage extends Component<{}, LandingPageState> {
             {this.state.displaySignup ? 'Have an account? Sign in insted' : 'No account? Sign up!'}
           </button>
         </div>
-        {this.state.displayServerResponse && <Popup data={this.state.signupResponse}/>}
+        {this.state.displayServerResponse && <Popup data={this.state.serverResponse}/>}
       </section>
     );
   }
