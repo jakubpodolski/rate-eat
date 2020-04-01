@@ -1,35 +1,32 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, { FC, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import {LandingPage} from './Components/LandingPage/LandingPage';
-import {HomePage} from './Components/HomePage/HomePage';
-import {API_URL, APP_NAME, getFromStorage} from './Components/helpers';
-import "./index.css"
+import { Router, navigate } from '@reach/router';
+import { LandingPage } from './Components/LandingPage/LandingPage';
+import { HomePage } from './Components/HomePage/HomePage';
+import { APP_NAME, getFromStorage, verifyUser } from './Components/helpers';
+
 import "./Static/mixins/headers.css"
+import "./index.css"
 
 const App: FC = () => {
-  const [logedIn, setLogedIn] = useState(false);
-
-  useEffect(() => {
+  useEffect( () => {
     const obj = getFromStorage(APP_NAME);
     if (obj && obj.token) {
       const { token } = obj;
-
-      fetch(`${API_URL}account/verify?token=${token}`)
-        .then(res => res.json())
-        .then(json => {
-          console.log(json)
-          if (json.success) {
-            setLogedIn(true)
-          }
-        });
+      verifyUser(token).then((res: Boolean) => {
+        if(res) navigate('home')
+        else navigate('/')
+      })
     }
   }, [])
 
   return (
-    <article className="app">
-      {logedIn 
-        ? <HomePage moveToLandingPage={setLogedIn}/>
-        : <LandingPage moveToLandingPage={setLogedIn}/>}
+    <article>
+      <Router className="app">
+        <LandingPage path="/" />
+        <HomePage path="/home" />
+      </Router>
+      
     </article>
   );
 };

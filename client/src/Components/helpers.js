@@ -36,3 +36,9 @@ export const deleteInStorage = (key) => {
     console.error(err);
   }
 }
+
+export const verifyUser = (token) => fetch(`${API_URL}account/verify?token=${token}`)
+  .then(res => res.json())
+  .then(json => json.success);
+
+  

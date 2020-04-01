@@ -1,11 +1,21 @@
-import React, { FC } from 'react';
-import {API_URL, APP_NAME, getFromStorage, deleteInStorage} from '../helpers';
+import React, { FC, useEffect } from 'react';
+import {API_URL, APP_NAME, getFromStorage, deleteInStorage, verifyUser} from '../helpers';
+import { navigate, RouteComponentProps } from '@reach/router';
 
-type HomePage = {
-  moveToLandingPage: (ar: boolean) => void
-}
+export const HomePage: FC<RouteComponentProps> = () => {
+  
+  useEffect( () => {
+    const obj = getFromStorage(APP_NAME);
+    if (obj && obj.token) {
+      const { token } = obj;
+      verifyUser(token).then((res: Boolean) => {
+        if(res) navigate('home')
+        else navigate('/')
+      })
+    }
+  }, [])
 
-export const HomePage: FC<HomePage> = (props) => {
+
   const handleLogOut = () => {
     const obj = getFromStorage(APP_NAME);
     if (obj && obj.token) {
@@ -15,10 +25,12 @@ export const HomePage: FC<HomePage> = (props) => {
         .then(res => res.json())
         .then(res => {
           if (res.success) {
-            deleteInStorage(APP_NAME)
+            deleteInStorage(APP_NAME);
+            navigate('/');
           }
-          //Move to LandingPage
-          props.moveToLandingPage(false)
+          else {
+            console.log("Error")
+          }
         });
     } else {}
   }

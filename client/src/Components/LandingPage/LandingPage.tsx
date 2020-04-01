@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
+import { RouteComponentProps, navigate } from '@reach/router';
+
 import {Login} from '../LogIn/Login';
 import {Signup} from '../Singup/Signup';
 import {Popup} from '../Popup/Popup';
 import {Spinner} from '../Spinner/Spinner';
+
 import {API_URL, APP_NAME, setInStorage} from '../helpers';
 
 import './LandingPage.css'
-
-type LandingPageProps = {
-  moveToLandingPage: (ar: boolean) => void
-}
 
 type LandingPageState = {
   loading: boolean,
@@ -25,7 +24,7 @@ type LandingPageState = {
   };
 }
 
-export class LandingPage extends Component<LandingPageProps, LandingPageState> {
+export class LandingPage extends Component<RouteComponentProps, LandingPageState> {
   constructor(props: any) {
     super(props)
 
@@ -70,7 +69,7 @@ export class LandingPage extends Component<LandingPageProps, LandingPageState> {
             displayServerResponse: true
           })
           // Move to HomePage
-          this.props.moveToLandingPage(true)
+          navigate('home')
         }
         else {
           this.setState({
