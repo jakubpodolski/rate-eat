@@ -6,10 +6,12 @@ const app = express();
 const port = process.env.PORT || 8080;
 const isDev = true;
 
-const signup = require('./routes/signup');
-const singin = require('./routes/signin');
-const verify = require('./routes/verify');
-const logout = require('./routes/logout');
+const signup = require('./routes/account/signup');
+const singin = require('./routes/account/signin');
+const verify = require('./routes/account/verify');
+const logout = require('./routes/account/logout');
+
+const findLocation = require('./routes/map/findLocation');
 
 const corsOptions = {
     origin: 'http://localhost:3000/',
@@ -42,6 +44,8 @@ signup(app)
 singin(app)
 verify(app)
 logout(app)
+
+findLocation(app)
 
 
 app.get('/', (req, res) => console.log("Hello"));

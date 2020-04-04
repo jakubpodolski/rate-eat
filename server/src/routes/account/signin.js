@@ -1,5 +1,5 @@
-const User = require('../models/User.js')
-const UserSession = require('../models/UserSession');
+const User = require('../../models/User.js')
+const UserSession = require('../../models/UserSession');
 
 module.exports = (app) => {
     app.post('/api/account/signin', (req, res, next) => {

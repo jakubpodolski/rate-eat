@@ -1,4 +1,4 @@
-const UserSession = require('../models/UserSession');
+const UserSession = require('../../models/UserSession');
 
 module.exports = (app) => {
   app.get('/api/account/logout', (req, res, next) => {

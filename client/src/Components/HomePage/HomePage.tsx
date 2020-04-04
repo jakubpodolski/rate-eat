@@ -1,6 +1,9 @@
 import React, { FC, useEffect } from 'react';
 import {API_URL, APP_NAME, getFromStorage, deleteInStorage, verifyUser} from '../helpers';
+import { Map } from '../Map/Map';
 import { navigate, RouteComponentProps } from '@reach/router';
+
+import './homePage.css';
 
 export const HomePage: FC<RouteComponentProps> = () => {
   
@@ -36,11 +39,12 @@ export const HomePage: FC<RouteComponentProps> = () => {
   }
 
   return (
-    <div>
+    <div className="homePage">
       Hi!
       <button onClick={() => handleLogOut()}>
         log out!
       </button>
+      <Map />
     </div>
   )
 }
