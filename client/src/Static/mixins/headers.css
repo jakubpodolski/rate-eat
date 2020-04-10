@@ -1,7 +1,7 @@
 @define-mixin h1 {
   font-size: 36px;
   font-weight: 600;
-  font-family: var(--primary-font);
+  font-family: var(--fontPrimary);
 
   @media (--mobile) {
     font-size: 32px
@@ -11,7 +11,7 @@
 @define-mixin h2 {
   font-size: 28px;
   font-weight: 600;
-  font-family: var(--primary-font);
+  font-family: var(--fontPrimary);
 
   @media (--mobile) {
     font-size: 24px
@@ -21,7 +21,7 @@
 @define-mixin h3 {
   font-size: 24px;
   font-weight: 600;
-  font-family: var(--primary-font);
+  font-family: var(--fontPrimary);
 
   @media (--mobile) {
     font-size: 20px
@@ -30,7 +30,7 @@
 
 @define-mixin h4 {
   font-size: 20px;
-  font-family: var(--primary-font);
+  font-family: var(--fontPrimary);
 
   @media (--mobile) {
     font-size: 18px
@@ -39,7 +39,7 @@
 
 @define-mixin p {
   font-size: 16px;
-  font-family: var(--primary-font);
+  font-family: var(--fontPrimary);
 
   @media (--mobile) {
     font-size: 14px;

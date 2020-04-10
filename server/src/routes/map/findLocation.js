@@ -6,7 +6,7 @@ const options = {
   endpoint: 'https://eu1.locationiq.com/v1/search.php'
 };
 
-const voivodeship = 'Lesser Poland Voivodeship';
+const city = 'Krakow';
 
 const endpointGenerator = (query) => (
   `${options.endpoint}?key=${options.apiKey}&q=${query.replace(" ", "%20")}&format=json`
@@ -24,7 +24,7 @@ module.exports = (app) => {
       message: "Error: Place cannot be null"
     })
 
-    
+    console.log(place)
 
     const foundPlaces = await fetch(endpointGenerator(place))
       .then(res => res.json())
@@ -36,13 +36,14 @@ module.exports = (app) => {
       message: "Error: No such place"
     })
 
-    // Limit places to Lesser Poland
+    
+    // Limit places to one city, for now
 
     res.send({
       success: true,
       message: "Found places",
-      locations: foundPlaces.filter(place => place.display_name.includes(voivodeship))
+      locations: foundPlaces
+      .filter(place => place.display_name.includes(city))
     })
-
   })
 };

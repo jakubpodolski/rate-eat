@@ -1,3 +1,7 @@
 .homePage {
-  grid-column: 2/12;
+  @mixin grid;
+}
+
+.home {
+  grid-column: 1/-1;
 }

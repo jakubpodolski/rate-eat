@@ -21,13 +21,21 @@ const App: FC = () => {
   }, [])
 
   return (
+    <>
+    <header>
+
+    </header>
     <article>
-      <Router className="app">
+      <Router>
         <LandingPage path="/" />
         <HomePage path="/home" />
       </Router>
       
     </article>
+    <footer>
+
+    </footer>
+    </>
   );
 };
 

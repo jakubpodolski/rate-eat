@@ -3,7 +3,7 @@
   --wrapper-main: 1440px;
 
   /* fonts */
-  --primary-font: 'Montserrat';
+  --fontPrimary: 'Montserrat';
 
   /* colors */
   --primary-color: #7e8287;
@@ -14,4 +14,5 @@
 
   /* misc */
   --border-radius: 3px;
+  --headerHeight: 60px;
 }

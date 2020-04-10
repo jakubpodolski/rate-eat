@@ -1,0 +1,13 @@
+.marker__title {
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  font-family: var(--fontPrimary);
+  font-weight: 600;
+  color: var(--error-color);
+
+  &:before { 
+    display: none;
+  }
+}
