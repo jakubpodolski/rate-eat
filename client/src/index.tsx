@@ -2,13 +2,19 @@ import React, { FC, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, navigate } from '@reach/router';
 import { LandingPage } from './Components/LandingPage/LandingPage';
+import { Layout } from './Components/Layout/Layout';
 import { HomePage } from './Components/HomePage/HomePage';
-import { APP_NAME, getFromStorage, verifyUser } from './Components/helpers';
+import { 
+  APP_NAME,
+  getFromStorage,
+  verifyUser,
+} from './Components/helpers';
 
 import "./Static/mixins/headers.css"
 import "./index.css"
 
 const App: FC = () => {
+
   useEffect( () => {
     const obj = getFromStorage(APP_NAME);
     if (obj && obj.token) {
@@ -20,22 +26,16 @@ const App: FC = () => {
     }
   }, [])
 
-  return (
-    <>
-    <header>
 
-    </header>
+  return (
     <article>
       <Router>
         <LandingPage path="/" />
-        <HomePage path="/home" />
+        <Layout path="/home" >
+          <HomePage path="/" />
+        </Layout>
       </Router>
-      
     </article>
-    <footer>
-
-    </footer>
-    </>
   );
 };
 

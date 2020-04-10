@@ -45,25 +45,6 @@ export const HomePage: FC<RouteComponentProps> = () => {
   }, [])
 
 
-  const handleLogOut = () => {
-    const obj = getFromStorage(APP_NAME);
-    if (obj && obj.token) {
-      const { token } = obj;
-
-      fetch(`${API_URL}account/logout?token=${token}`)
-        .then(res => res.json())
-        .then(res => {
-          if (res.success) {
-            deleteInStorage(APP_NAME);
-            navigate('/');
-          }
-          else {
-            console.log("Error")
-          }
-        });
-    } else {}
-  }
-
   const handleSearch = async () => {
     if (searchQuery) {
       const searchForLocations = fetch(`${API_URL}location/find`, {
@@ -103,9 +84,6 @@ export const HomePage: FC<RouteComponentProps> = () => {
   return (
     <section className="homePage">
       <div className="home">
-        <button onClick={() => handleLogOut()}>
-          log out!
-        </button>
         <Map locations={locations}/>
         <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
         <button onClick={() => handleSearch()}>
