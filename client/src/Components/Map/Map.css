@@ -2,3 +2,7 @@
   height: calc(99vh - var(--headerHeight) - var(--footerHeight));
   width: 100%;
 }
+
+.map {
+  position: relative;
+}

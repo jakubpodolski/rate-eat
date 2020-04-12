@@ -35,24 +35,26 @@ export const Map: FC<MapProps> = ({locations}) => {
     */
   }, [locations])
 
-  return (   
-    <LeafLetMap
-      ref={mapRef}
-      center={position}
-      zoom={zoom}
-      zoomControl={false}
-    >
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
-        // url='https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}@2x.png?key=jSLDONnAekC18DvuFFxC'
-        url='https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=jSLDONnAekC18DvuFFxC'
-      />
-      <FeatureGroup ref={groupRef}>
-        {locations.map((location: any) => (
-          <Marker key={location.place_id} {...location}/>
-        ))}
-      </FeatureGroup>
-      <ZoomControl position="bottomright"/>
-    </LeafLetMap>
+  return (
+    <div className="map">
+      <LeafLetMap
+        ref={mapRef}
+        center={position}
+        zoom={zoom}
+        zoomControl={false}
+      >
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+          // url='https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}@2x.png?key=jSLDONnAekC18DvuFFxC'
+          url='https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=jSLDONnAekC18DvuFFxC'
+        />
+        <FeatureGroup ref={groupRef}>
+          {locations.map((location: any) => (
+            <Marker key={location.place_id} {...location}/>
+          ))}
+        </FeatureGroup>
+        <ZoomControl position="bottomright"/>
+      </LeafLetMap>
+    </div>
   );
 };
