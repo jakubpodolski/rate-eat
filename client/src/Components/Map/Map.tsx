@@ -3,6 +3,7 @@ import {
   Map as LeafLetMap,
   TileLayer,
   FeatureGroup,
+  ZoomControl,
 } from 'react-leaflet';
 import { Marker } from '../Marker/Marker';
 
@@ -39,6 +40,7 @@ export const Map: FC<MapProps> = ({locations}) => {
       ref={mapRef}
       center={position}
       zoom={zoom}
+      zoomControl={false}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
@@ -50,6 +52,7 @@ export const Map: FC<MapProps> = ({locations}) => {
           <Marker key={location.place_id} {...location}/>
         ))}
       </FeatureGroup>
+      <ZoomControl position="bottomright"/>
     </LeafLetMap>
   );
 };

@@ -85,10 +85,6 @@ export const HomePage: FC<RouteComponentProps> = () => {
     <section className="homePage">
       <div className="home">
         <Map locations={locations}/>
-        <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-        <button onClick={() => handleSearch()}>
-          Search! 
-        </button>
       </div>
     </section>
   )

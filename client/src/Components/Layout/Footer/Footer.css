@@ -1,0 +1,19 @@
+.footer {
+  height: var(--footerHeight);
+}
+
+.footer__inner {
+  @mixin wrapper;
+  display: flex;
+  justify-content: center;
+
+  & p {
+    font-size: 12px;
+    margin: 8px 0;
+  }
+}
+
+.footer__link {
+  text-decoration: underline;
+  color: var(--black);
+}
