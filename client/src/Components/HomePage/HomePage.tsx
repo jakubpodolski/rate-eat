@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import {API_URL, APP_NAME, getFromStorage, deleteInStorage, verifyUser} from '../helpers';
+import {API_URL, APP_NAME, getFromStorage, verifyUser} from '../helpers';
 import { Map } from '../Map/Map';
 import { navigate, RouteComponentProps } from '@reach/router';
 
@@ -31,8 +31,6 @@ export const HomePage: FC<RouteComponentProps> = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [locations, setLocations] = useState(testData);
 
-  
-
   useEffect( () => {
     const obj = getFromStorage(APP_NAME);
     if (obj && obj.token) {
@@ -43,7 +41,6 @@ export const HomePage: FC<RouteComponentProps> = () => {
       })
     }
   }, [])
-
 
   const handleSearch = async () => {
     if (searchQuery) {
@@ -68,6 +65,12 @@ export const HomePage: FC<RouteComponentProps> = () => {
         })
     }
   }
+
+  const handleInputKeyPress = (e: any) => {
+    if (e.key === 'Enter') {
+        handleSearch()
+    }
+  }
  
   const removeAccents = (str: string) => {
     const accents = "ĄąÓóĘęĆćŃńŁłŚśŻŹżź";
@@ -85,10 +88,17 @@ export const HomePage: FC<RouteComponentProps> = () => {
     <section className="homePage">
       <div className="home">
         <Map locations={locations}/>
-        <div className="home__searchField">
-          <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-          <button onClick={() => handleSearch()}>
-
+        <div className="home__search">
+          <input 
+            className="home__input"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyPress={(e) => handleInputKeyPress(e)}
+          />
+          <button
+            className="home__search"
+            onClick={() => handleSearch()}
+          >
           </button>
         </div>
       </div>
