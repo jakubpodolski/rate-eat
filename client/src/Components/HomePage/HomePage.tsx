@@ -31,17 +31,6 @@ export const HomePage: FC<RouteComponentProps> = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [locations, setLocations] = useState(testData);
 
-  useEffect( () => {
-    const obj = getFromStorage(APP_NAME);
-    if (obj && obj.token) {
-      const { token } = obj;
-      verifyUser(token).then((res: Boolean) => {
-        if(res) navigate('home')
-        else navigate('/')
-      })
-    }
-  }, [])
-
   const handleSearch = async () => {
     if (searchQuery) {
       const searchForLocations = fetch(`${API_URL}location/find`, {

@@ -1,10 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { 
   APP_NAME,
   API_URL,
   getFromStorage,
-  deleteInStorage
+  deleteInStorage,
+  verifyUser
 } from '../../helpers';
 import { navigate } from '@reach/router';
 
@@ -30,8 +31,20 @@ export const Header: FC = () => {
             console.log("Error")
           }
         });
-    } else {}
+    }
   }
+
+  useEffect( () => {
+    const obj = getFromStorage(APP_NAME);
+    if (obj && obj.token) {
+      const { token } = obj;
+      verifyUser(token).then((res: Boolean) => {
+        if(res) navigate('home')
+        else navigate('/')
+      })
+    }
+    else navigate('/')
+  }, [])
 
   return (
     <header className="header">
