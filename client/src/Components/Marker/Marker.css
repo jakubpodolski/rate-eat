@@ -1,3 +1,19 @@
+.leaflet-popup-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.marker__address, 
+.leaflet-popup-content p {
+  font-size: 12px;
+  margin: 0;
+}
+
+.marker__button {
+  font-size: 12px;
+  margin: 10px 0; 
+}
+
 .marker__title {
   padding: 0;
   background: transparent;

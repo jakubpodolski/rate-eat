@@ -24,6 +24,7 @@ const App: FC = () => {
         else navigate('/')
       })
     }
+    else navigate('/')
   }, [])
 
 

@@ -1,7 +1,7 @@
-import React, { FC, useEffect, useState } from 'react';
-import {API_URL, APP_NAME, getFromStorage, verifyUser} from '../helpers';
+import React, { FC, useState } from 'react';
+import { API_URL } from '../helpers';
 import { Map } from '../Map/Map';
-import { navigate, RouteComponentProps } from '@reach/router';
+import { RouteComponentProps } from '@reach/router';
 
 import './homePage.css';
 
