@@ -1,35 +1,15 @@
 import React, { FC, useState } from 'react';
-import { API_URL } from '../helpers';
+import { API_URL, removeAccents } from '../helpers';
 import { Map } from '../Map/Map';
+import { UserLocations } from '../UserLocations/UserLocations';
 import { RouteComponentProps } from '@reach/router';
 
 import './homePage.css';
 
-const testData = [
-  {
-    "place_id": "38877324",
-    "licence": "https://locationiq.com/attribution",
-    "osm_type": "node",
-    "osm_id": "2904954500",
-    "boundingbox": [
-      "50.0448426",
-      "50.0449426",
-      "19.9484385",
-      "19.9485385"
-    ],
-    "lat": "50.0448926",
-    "lon": "19.9484885",
-    "display_name": "Wietnam, Staromostowa, Podgórze, Krakow, Lesser Poland Voivodeship, 30-506, Poland",
-    "class": "amenity",
-    "type": "restaurant",
-    "importance": 0.101,
-    "icon": "https://locationiq.org/static/images/mapicons/food_restaurant.p.20.png"
-  }
-]
 
 export const HomePage: FC<RouteComponentProps> = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [locations, setLocations] = useState(testData);
+  const [locations, setLocations] = useState([]);
 
   const handleSearch = async () => {
     if (searchQuery) {
@@ -60,18 +40,6 @@ export const HomePage: FC<RouteComponentProps> = () => {
         handleSearch()
     }
   }
- 
-  const removeAccents = (str: string) => {
-    const accents = "ĄąÓóĘęĆćŃńŁłŚśŻŹżź";
-    const accentsOut = "AaOoEeCcNnLlSsZZzz";
-    return str
-      .split("")
-      .map((letter: string, index: number) => {
-        const accentIndex = accents.indexOf(letter);
-        return accentIndex !== -1 ? accentsOut[accentIndex] : letter;
-      })
-      .join("");
-  }
 
   return (
     <section className="homePage">
@@ -90,6 +58,7 @@ export const HomePage: FC<RouteComponentProps> = () => {
           >
           </button>
         </div>
+        <UserLocations setLocations={setLocations}/>
       </div>
     </section>
   )

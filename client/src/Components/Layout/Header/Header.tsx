@@ -16,7 +16,7 @@ export const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogOut = () => {
-    const obj = getFromStorage(APP_NAME);
+    const obj = getFromStorage();
     if (obj && obj.token) {
       const { token } = obj;
 
@@ -34,8 +34,14 @@ export const Header: FC = () => {
     }
   }
 
+  const handleToLocationPage = () => {
+    let el = document.getElementById("myLocations");
+    el?.classList.toggle("userLocations--hidden")
+
+  }
+
   useEffect( () => {
-    const obj = getFromStorage(APP_NAME);
+    const obj = getFromStorage();
     if (obj && obj.token) {
       const { token } = obj;
       verifyUser(token).then((res: Boolean) => {
@@ -67,7 +73,12 @@ export const Header: FC = () => {
       {isMenuOpen && (
       <div className="header__menu">
         <div className="header__menuItems">
-
+          <button 
+            onClick={() => handleToLocationPage()}
+            className="button--secondary"
+          >
+            My locations
+          </button>
           <button 
             onClick={() => handleLogOut()}
             className="button--secondary"

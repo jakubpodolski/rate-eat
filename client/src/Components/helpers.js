@@ -1,9 +1,7 @@
 export const API_URL = 'http://localhost:8080/api/';
 export const APP_NAME = 'rate-eat-app';
 
-export const getFromStorage = (key) => {
-  if (!key) return null;
-  
+export const getFromStorage = (key = APP_NAME) => {
   try {
     const valueStr = localStorage.getItem(key);
     if (valueStr) return JSON.parse(valueStr);
@@ -42,3 +40,15 @@ export const verifyUser = (token) => fetch(`${API_URL}account/verify?token=${tok
   .then(json => json.success);
 
   
+
+export const removeAccents = (str) => {
+    const accents = "ĄąÓóĘęĆćŃńŁłŚśŻŹżź";
+    const accentsOut = "AaOoEeCcNnLlSsZZzz";
+    return str
+      .split("")
+      .map((letter, index) => {
+        const accentIndex = accents.indexOf(letter);
+        return accentIndex !== -1 ? accentsOut[accentIndex] : letter;
+      })
+      .join("");
+  }

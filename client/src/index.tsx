@@ -5,7 +5,6 @@ import { LandingPage } from './Components/LandingPage/LandingPage';
 import { Layout } from './Components/Layout/Layout';
 import { HomePage } from './Components/HomePage/HomePage';
 import { 
-  APP_NAME,
   getFromStorage,
   verifyUser,
 } from './Components/helpers';
@@ -16,7 +15,7 @@ import "./index.css"
 const App: FC = () => {
 
   useEffect( () => {
-    const obj = getFromStorage(APP_NAME);
+    const obj = getFromStorage();
     if (obj && obj.token) {
       const { token } = obj;
       verifyUser(token).then((res: Boolean) => {

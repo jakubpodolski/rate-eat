@@ -1,29 +1,62 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Marker as Mark,
   Popup as MapPopup,
   Tooltip
 } from 'react-leaflet';
-
+import { API_URL, getFromStorage } from '../helpers';
 import './Marker.css'
 
 type MarkProps = {
-  place_id: string,
   lat: string,
   lon: string,
   display_name: string,
-  icon: string
+  address: [] | string,
+  type: string
 }
 
-export const Marker: FC<MarkProps> = ({lat, lon, display_name}) => {
-  const [name, address] =  [display_name.split(',')[0], display_name.split(',').slice(1, 3)]
+export const Marker: FC<MarkProps> = ({lat, lon, display_name, address, type}) => {
+  const [displayPopUp, setDisplayPopUp] = useState(false);
+
+  if (address) {
+    const [name, location] =  [display_name.split(',')[0], display_name.split(',').slice(1, 3)]
+  }
+  
+
+  const handleSaveButtonClick = () => {
+    const obj = getFromStorage();
+    if (obj && obj.token) {
+      const { token } = obj;
+      console.log(token)
+      fetch(`${API_URL}location/save`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          token: token,
+          display_name: name,
+          lat: lat,
+          lon: lon,
+          address: address.join(','),
+          type: type
+        })
+      })
+      .then(res => res.json())
+      .then(res => console.log(res))
+    }
+  }
+
   return (
     <Mark position={{lat: +lat, lng: +lon}}>
       <MapPopup className="marker__popup">
         <p className="marker__address">
-          {address}
+          {address} 
         </p>
-        <button className="marker__button button--primary">
+        <button
+          className="marker__button button--primary"
+          onClick={() => handleSaveButtonClick()}
+        >
           Add to favorites
         </button>
       </MapPopup>

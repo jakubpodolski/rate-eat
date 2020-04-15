@@ -16,7 +16,7 @@ export const Popup: FC<Popup> = ({data}) => {
   useEffect(() => {
     setIsOpen(false)
   },[])
-  console.log(data)
+
   Modal.setAppElement('#root')
   return (
     <Modal
