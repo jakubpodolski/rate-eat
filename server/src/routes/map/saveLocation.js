@@ -1,17 +1,18 @@
 const UserSession = require('../../models/UserSession');
-const Location = require('../../models/Location');
+const Point = require('../../models/Point');
 
 module.exports = (app) => {
   app.post('/api/location/save', async (req, res, next) => {
     const { body } = req;
     let {
       token,
-      name, 
+      display_name, 
       lat,
       lon, 
-      type
+      address,
+      type, 
     } = body;
-
+    
     if (!token) return res.send({
       success: false,
       message: "Error: Cannot find token"
@@ -32,26 +33,26 @@ module.exports = (app) => {
         success: false,
         message: 'Error: User not found'
       });
-
-
-      Location.find({
+      
+      Point.find({
         userId: userId,
-        name: name
+        display_name: display_name
       }, (err, location) => {
         if (location.length) return res.send({
           success: false,
           message: "Error: Location alredy saved"
         })
+        
+        const newPoint = new Point(); 
 
-        const newLocation = new Location(); 
+        newPoint.userId = userId;
+        newPoint.display_name = display_name;
+        newPoint.lat = lat;
+        newPoint.lon = lon;
+        newPoint.type = type;
+        newPoint.address = address;
 
-        newLocation.userId = userId;
-        newLocation.name = name;
-        newLocation.lat = lat;
-        newLocation.lon = lon;
-        newLocation.type = type;
-
-        newLocation.save((err, user) => {
+        newPoint.save((err, user) => {
           if (err) return res.send({
               success: false,
               message: "Error: Server error"

@@ -1,5 +1,5 @@
 const UserSession = require('../../models/UserSession');
-const Location = require('../../models/Location');
+const Point = require('../../models/Point');
 
 module.exports = (app) => {
   app.post('/api/location/getall', async (req, res, next) => {
@@ -30,9 +30,9 @@ module.exports = (app) => {
       });
 
 
-      Location.find({
+      Point.find({
         userId: userId,
-      }, (err, locations) => {
+      }, (err, points) => {
         if (err) res.send({
           success: false,
           message: 'Error: Server error'
@@ -41,7 +41,7 @@ module.exports = (app) => {
         res.send({
           success: true,
           message: 'All places',
-          places: locations
+          places: points
         });
       })
     })

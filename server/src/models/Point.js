@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const LocationSchema = new mongoose.Schema({
+const PointSchema = new mongoose.Schema({
     userId: {
       type: String,
       default: '',
     },
-    name: {
+    display_name: {
       type: String,
       default: '',
     },
@@ -17,10 +17,14 @@ const LocationSchema = new mongoose.Schema({
       type: String,
       default: '',
     },
+    address: {
+      type: String,
+      default: '',
+    },
     type: {
       type: String,
       default: '',
     },
 });
 
-module.exports = mongoose.model('Location', LocationSchema);
+module.exports = mongoose.model('Point', PointSchema);
