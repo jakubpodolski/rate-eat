@@ -17,11 +17,7 @@ type MarkProps = {
 
 export const Marker: FC<MarkProps> = ({lat, lon, display_name, address, type}) => {
   const [displayPopUp, setDisplayPopUp] = useState(false);
-
-  if (address) {
-    const [name, location] =  [display_name.split(',')[0], display_name.split(',').slice(1, 3)]
-  }
-  
+ 
 
   const handleSaveButtonClick = () => {
     const obj = getFromStorage();
@@ -35,10 +31,10 @@ export const Marker: FC<MarkProps> = ({lat, lon, display_name, address, type}) =
         },
         body: JSON.stringify({
           token: token,
-          display_name: name,
+          display_name: display_name.split(',')[0],
           lat: lat,
           lon: lon,
-          address: address.join(','),
+          address: address,
           type: type
         })
       })
@@ -51,7 +47,10 @@ export const Marker: FC<MarkProps> = ({lat, lon, display_name, address, type}) =
     <Mark position={{lat: +lat, lng: +lon}}>
       <MapPopup className="marker__popup">
         <p className="marker__address">
-          {address} 
+          {display_name.includes(',') 
+            ? display_name.split(',').slice(1, 3)
+            : address
+          }
         </p>
         <button
           className="marker__button button--primary"
@@ -67,7 +66,10 @@ export const Marker: FC<MarkProps> = ({lat, lon, display_name, address, type}) =
         opacity={1}
         permanent
       >
-        {name}
+        {display_name.includes(',') 
+          ? display_name.split(',')[0]
+          : display_name
+        }
       </Tooltip>
     </Mark>
   )
