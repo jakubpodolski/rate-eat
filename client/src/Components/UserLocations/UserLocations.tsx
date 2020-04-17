@@ -1,8 +1,12 @@
 import React, { FC, useEffect, useState, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import { RouteComponentProps } from '@reach/router';
+
 import { SortLocations } from './SortLocations/SortLocations';
+import { Location } from './Location/Location';
+
 import { getFromStorage, API_URL } from '../helpers';
+import { LocationType } from '../../types';
 
 import './UserLocations.css';
 
@@ -38,6 +42,14 @@ export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
     ))
   )
 
+  const handleSortClick = (name: string, type: string) => {
+    setLocations(
+      userLocations.filter((location: LocationType) => (
+        location.display_name === name && location.type === type
+      ))
+    )
+  }
+
   return (
     <div
       id="myLocations"
@@ -47,10 +59,12 @@ export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
     >
       <SortLocations handleSortClick={setLocationsFilter}/>
       <div className="userLocations__inner">
-        {showFilteredLocations().map((location: any) => (
-          <div className="userLocations__location" key={location._id}>
-            {location.display_name}, {location.type}
-          </div>
+        {showFilteredLocations().map((location: LocationType) => (
+          <Location
+            key={location._id}
+            {...location}
+            handleSortClick={handleSortClick}
+          />
         ))}
       </div>
       <button onClick={() => setLocations(userLocations)}>

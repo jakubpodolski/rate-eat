@@ -67,9 +67,9 @@ export const HomePage: FC<RouteComponentProps> = () => {
 
 /*
 TODO: 
-- Add possibility to sort locations
 - Add possibility to show single locations
 - Add possibilty to remove location
+- Add popup after save click
 - It should update after adding/removing location
 - Style homePage
 - Hosting and deploy
