@@ -1,0 +1,26 @@
+.sortLocations {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-around;
+
+  & > button {
+    @mixin buttonWithIcon;
+  }
+}
+
+
+.sortLocations__button--all:before {
+  background: svg-load('showAll.svg', width: 30px, height: 30px, stroke: var(--white))
+}
+
+.sortLocations__button--cafe:before {
+  background: svg-load('cafe.svg', width: 30px, height: 30px, stroke: var(--white))
+}
+
+.sortLocations__button--restaurant:before {
+  background: svg-load('restaurant.svg', width: 30px, height: 30px, stroke: var(--white))
+}
+
+.sortLocations__button--pub:before {
+  background: svg-load('pub.svg', width: 30px, height: 30px, stroke: var(--white))
+}

@@ -1,6 +1,8 @@
 import React, { FC, Dispatch, SetStateAction } from 'react';
 
-type SortLocations = { 
+import './SortLocations.css';
+
+type SortLocations = {
   handleSortClick: Dispatch<SetStateAction<string>>
 }
 
@@ -10,20 +12,40 @@ const locationsTypes = {
   restaurant: 'restaurant'
 }
 
-export const SortLocations: FC<SortLocations> = ({handleSortClick}) => {
+export const SortLocations: FC<SortLocations> = ({ handleSortClick }) => {
   return (
     <div className="sortLocations">
-      <button onClick={() => handleSortClick('')}>
-        All
+      <button
+        className="sortLocations__button--all"
+        onClick={() => handleSortClick('')}
+      >
+        <span>
+          All
+        </span>
       </button>
-      <button onClick={() => handleSortClick(locationsTypes.cafe)}>
-        C
+      <button
+        className="sortLocations__button--cafe"
+        onClick={() => handleSortClick(locationsTypes.cafe)}
+      >
+        <span>
+          Cafe
+        </span>
       </button>
-      <button onClick={() => handleSortClick(locationsTypes.restaurant)}>
-        R
+      <button
+        className="sortLocations__button--restaurant"
+        onClick={() => handleSortClick(locationsTypes.restaurant)}
+      >        
+        <span>
+          Restaurant
+        </span>
       </button>
-      <button onClick={() => handleSortClick(locationsTypes.pub)}>
-        P
+      <button
+        className="sortLocations__button--pub"
+        onClick={() => handleSortClick(locationsTypes.pub)}
+      >        
+        <span>
+          Pub
+        </span>
       </button>
     </div>
   );

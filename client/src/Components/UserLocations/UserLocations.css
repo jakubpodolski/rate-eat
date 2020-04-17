@@ -1,13 +1,15 @@
 .userLocations {
   position: absolute;
-  min-height: 90%;
+  max-height: 90%;
+  min-height: 45%;
+  min-width: 280px;
   z-index: 450;
   top: 0;
   background: var(--primary-color);
 }
 
 .userLocations--hidden {
-  display: none; 
+  /* display: none;  */
 }
 
 .userLocations__inner {
@@ -15,16 +17,4 @@
   flex-direction: column;
   justify-content: center; 
   padding: 20px;
-}
-
-.userLocations__location {
-  margin: 10px 0;
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
