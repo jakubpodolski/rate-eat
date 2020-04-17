@@ -14,6 +14,7 @@ const logout = require('./routes/account/logout');
 const findLocation = require('./routes/map/findLocation');
 const saveLocation = require('./routes/map/saveLocation');
 const getAllLocations = require('./routes/map/getAllLocations');
+const removeLocation = require('./routes/map/removeLocation');
 
 const corsOptions = {
     origin: 'http://localhost:3000/',
@@ -50,6 +51,7 @@ logout(app)
 findLocation(app)
 saveLocation(app)
 getAllLocations(app)
+removeLocation(app)
 
 
 app.get('/', (req, res) => console.log("Hello"));

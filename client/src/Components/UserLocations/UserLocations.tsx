@@ -36,18 +36,37 @@ export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
     }
   },[]);
 
-  const showFilteredLocations = (): any => (
+  const showFilteredLocations = (): LocationType[] => (
     userLocations.filter((location: any) => (
       location.type === locationsFilter || locationsFilter === '' 
     ))
   )
 
-  const handleSortClick = (name: string, type: string) => {
+  const handleSortClick = (name: string, type: string): void => {
     setLocations(
       userLocations.filter((location: LocationType) => (
         location.display_name === name && location.type === type
       ))
     )
+  }
+
+  const handleDeleteClick = (name: string, type: string, userId: string) => {
+    const obj = getFromStorage();
+    if (obj && obj.token) {
+      fetch(`${API_URL}location/remove`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          display_name: name,
+          type: type,
+          userId: userId
+        })
+      })
+      .then(res => res.json())
+      .then(res => console.log(res))
+    }
   }
 
   return (
@@ -64,6 +83,7 @@ export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
             key={location._id}
             {...location}
             handleSortClick={handleSortClick}
+            handleDeleteClick={handleDeleteClick}
           />
         ))}
       </div>
