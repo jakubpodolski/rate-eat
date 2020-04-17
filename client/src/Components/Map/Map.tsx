@@ -5,12 +5,14 @@ import {
   FeatureGroup,
   ZoomControl,
 } from 'react-leaflet';
+
 import { Marker } from '../Marker/Marker';
 
+import { LocationType } from '../../types';
 import './Map.css';
 
 type MapProps = {
-  locations: any
+  locations: LocationType[]
 }
 
 export const Map: FC<MapProps> = ({locations}) => {
@@ -25,14 +27,12 @@ export const Map: FC<MapProps> = ({locations}) => {
       setZoom(25);
       setPosition({lat: +locations[0].lat, lng: +locations[0].lon})
     }
-    /*
+
     if (groupRef.current) {
-        console.log('yup')
         const map = mapRef.current.leafletElement;
         const group = groupRef.current.leafletElement;
         map.fitBounds(group.getBounds());
       }
-    */
   }, [locations])
 
   return (
