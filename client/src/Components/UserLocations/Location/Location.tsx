@@ -16,7 +16,6 @@ userId,
 handleSortClick,
 handleDeleteClick
 }) => {
-  console.log(userId)
   return (
     <div className="userLocations__location">
       {display_name}, {type}

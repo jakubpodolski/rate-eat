@@ -4,7 +4,10 @@ import {
   Popup as MapPopup,
   Tooltip
 } from 'react-leaflet';
+
 import { API_URL, getFromStorage } from '../helpers';
+import { Popup } from '../Popup/Popup';
+
 import './Marker.css'
 
 type MarkProps = {
@@ -16,14 +19,13 @@ type MarkProps = {
 }
 
 export const Marker: FC<MarkProps> = ({lat, lon, display_name, address, type}) => {
-  const [displayPopUp, setDisplayPopUp] = useState(false);
+  const [serverResponse, setServerResponse] = useState({sucess: false, message: ''});
  
-
   const handleSaveButtonClick = () => {
+    setServerResponse({sucess: false, message: ''})
     const obj = getFromStorage();
     if (obj && obj.token) {
       const { token } = obj;
-      console.log(token)
       fetch(`${API_URL}location/save`, {
         method: 'POST',
         headers: {
@@ -39,7 +41,9 @@ export const Marker: FC<MarkProps> = ({lat, lon, display_name, address, type}) =
         })
       })
       .then(res => res.json())
-      .then(res => console.log(res))
+      .then(res => {
+        setServerResponse(res);
+      })
     }
   }
 
@@ -71,6 +75,7 @@ export const Marker: FC<MarkProps> = ({lat, lon, display_name, address, type}) =
           : display_name
         }
       </Tooltip>
+      {serverResponse.message && <Popup data={serverResponse} />}
     </Mark>
   )
 };

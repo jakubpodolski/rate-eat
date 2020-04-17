@@ -5,6 +5,7 @@
   transform: translateX(-50%);
   min-width: 160px;
   border-radius: var(--border-radius);
+  z-index: 500;
 
   &.portal--sucess {
     background-color: var(--sucess-color);

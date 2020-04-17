@@ -9,6 +9,8 @@ import { getFromStorage, API_URL } from '../helpers';
 import { LocationType } from '../../types';
 
 import './UserLocations.css';
+import { Popup } from '../Popup/Popup';
+
 
 interface IUserLocations extends RouteComponentProps {
   setLocations: Dispatch<SetStateAction<never[]>>
@@ -17,6 +19,7 @@ interface IUserLocations extends RouteComponentProps {
 export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
   const [userLocations, setUserLocations] = useState([]);
   const [locationsFilter, setLocationsFilter] = useState('')
+  const [serverResponse, setServerResponse] = useState({sucess: false, message: ''});
   
   useEffect(() => {
     const obj = getFromStorage();
@@ -65,7 +68,9 @@ export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
         })
       })
       .then(res => res.json())
-      .then(res => console.log(res))
+      .then(res => {
+        setServerResponse(res);
+      })
     }
   }
 
@@ -90,6 +95,7 @@ export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
       <button onClick={() => setLocations(userLocations)}>
           Show all locations
       </button>
+      {serverResponse.message && <Popup data={serverResponse} />}
     </div>
   )
 }

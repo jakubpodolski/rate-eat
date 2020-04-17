@@ -105,7 +105,6 @@ export class LandingPage extends Component<RouteComponentProps, LandingPageState
           displayServerResponse: true
         })
       })
-      
   }
 
   render() {
