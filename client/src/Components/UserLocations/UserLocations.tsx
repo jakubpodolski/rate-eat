@@ -1,9 +1,10 @@
 import React, { FC, useEffect, useState, Dispatch, SetStateAction } from 'react';
+import classNames from 'classnames';
 import { RouteComponentProps } from '@reach/router';
+import { SortLocations } from './SortLocations/SortLocations';
 import { getFromStorage, API_URL } from '../helpers';
 
 import './UserLocations.css';
-import classNames from 'classnames';
 
 interface IUserLocations extends RouteComponentProps {
   setLocations: Dispatch<SetStateAction<never[]>>
@@ -11,7 +12,8 @@ interface IUserLocations extends RouteComponentProps {
 
 export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
   const [userLocations, setUserLocations] = useState([]);
-
+  const [locationsFilter, setLocationsFilter] = useState('')
+  
   useEffect(() => {
     const obj = getFromStorage();
     if (obj && obj.token) {
@@ -30,7 +32,12 @@ export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
     }
   },[]);
 
-  console.log(userLocations)
+  const showFilteredLocations = (): any => (
+    userLocations.filter((location: any) => (
+      location.type === locationsFilter || locationsFilter === '' 
+    ))
+  )
+
   return (
     <div
       id="myLocations"
@@ -38,24 +45,11 @@ export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
         'userLocations--hidden': true
       })}
     >
-      <div className="userLocations__sort">
-        <button>
-          All
-        </button>
-        <button>
-          C
-        </button>
-        <button>
-          R
-        </button>
-        <button>
-          P
-        </button>
-      </div>
+      <SortLocations handleSortClick={setLocationsFilter}/>
       <div className="userLocations__inner">
-        {userLocations.map((location: any) => (
+        {showFilteredLocations().map((location: any) => (
           <div className="userLocations__location" key={location._id}>
-            {location.name}, {location.type}
+            {location.display_name}, {location.type}
           </div>
         ))}
       </div>

@@ -63,3 +63,16 @@ export const HomePage: FC<RouteComponentProps> = () => {
     </section>
   )
 }
+
+
+/*
+TODO: 
+- Add possibility to sort locations
+- Add possibility to show single locations
+- Add possibilty to remove location
+- It should update after adding/removing location
+- Style homePage
+- Hosting and deploy
+
+
+*/
