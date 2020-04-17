@@ -13,13 +13,14 @@ import { Popup } from '../Popup/Popup';
 
 
 interface IUserLocations extends RouteComponentProps {
-  setLocations: Dispatch<SetStateAction<never[]>>
+  setLocations: Dispatch<SetStateAction<never[]>>,
+  mapServerResponse: {success: boolean, message: string}
 }
 
-export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
+export const UserLocations: FC<IUserLocations> = ({setLocations, mapServerResponse}) => {
   const [userLocations, setUserLocations] = useState([]);
   const [locationsFilter, setLocationsFilter] = useState('')
-  const [serverResponse, setServerResponse] = useState({sucess: false, message: ''});
+  const [serverResponse, setServerResponse] = useState({success: false, message: ''});
   
   useEffect(() => {
     const obj = getFromStorage();
@@ -37,7 +38,7 @@ export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
       .then(res => res.json())
       .then(res => setUserLocations(res.places))
     }
-  },[]);
+  },[serverResponse, mapServerResponse]);
 
   const showFilteredLocations = (): LocationType[] => (
     userLocations.filter((location: any) => (
@@ -54,6 +55,7 @@ export const UserLocations: FC<IUserLocations> = ({setLocations}) => {
   }
 
   const handleDeleteClick = (name: string, type: string, userId: string) => {
+    setServerResponse({success: false, message: ''})
     const obj = getFromStorage();
     if (obj && obj.token) {
       fetch(`${API_URL}location/remove`, {

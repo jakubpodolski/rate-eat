@@ -5,9 +5,6 @@ import {
   Tooltip
 } from 'react-leaflet';
 
-import { API_URL, getFromStorage } from '../helpers';
-import { Popup } from '../Popup/Popup';
-
 import './Marker.css'
 
 type MarkProps = {
@@ -15,36 +12,24 @@ type MarkProps = {
   lon: string,
   display_name: string,
   address: [] | string,
-  type: string
+  type: string,
+  handleSaveButtonClick: (
+    display_name: string, lat: string, 
+    lon: string, address: [] | string, type: string
+  ) => void,
 }
 
-export const Marker: FC<MarkProps> = ({lat, lon, display_name, address, type}) => {
-  const [serverResponse, setServerResponse] = useState({sucess: false, message: ''});
- 
-  const handleSaveButtonClick = () => {
-    setServerResponse({sucess: false, message: ''})
-    const obj = getFromStorage();
-    if (obj && obj.token) {
-      const { token } = obj;
-      fetch(`${API_URL}location/save`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          token: token,
-          display_name: display_name.split(',')[0],
-          lat: lat,
-          lon: lon,
-          address: address,
-          type: type
-        })
-      })
-      .then(res => res.json())
-      .then(res => {
-        setServerResponse(res);
-      })
-    }
+export const Marker: FC<MarkProps> = ({
+  display_name,
+  lat,
+  lon,
+  address,
+  type, 
+  handleSaveButtonClick
+}) => {
+
+  const handleClick = () => {
+    handleSaveButtonClick(display_name, lat, lon, address, type)
   }
 
   return (
@@ -58,7 +43,7 @@ export const Marker: FC<MarkProps> = ({lat, lon, display_name, address, type}) =
         </p>
         <button
           className="marker__button button--primary"
-          onClick={() => handleSaveButtonClick()}
+          onClick={() => handleClick()}
         >
           Add to favorites
         </button>
@@ -75,7 +60,6 @@ export const Marker: FC<MarkProps> = ({lat, lon, display_name, address, type}) =
           : display_name
         }
       </Tooltip>
-      {serverResponse.message && <Popup data={serverResponse} />}
     </Mark>
   )
 };

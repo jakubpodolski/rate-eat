@@ -24,8 +24,6 @@ module.exports = (app) => {
       message: "Error: Place cannot be null"
     })
 
-    console.log(place)
-
     const foundPlaces = await fetch(endpointGenerator(place))
       .then(res => res.json())
       .then(res => res)
@@ -35,7 +33,6 @@ module.exports = (app) => {
       success: false,
       message: "Error: No such place"
     })
-
     
     // Limit places to one city, for now
 

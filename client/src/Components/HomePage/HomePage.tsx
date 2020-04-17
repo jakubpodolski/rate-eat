@@ -1,15 +1,18 @@
 import React, { FC, useState } from 'react';
-import { API_URL, removeAccents } from '../helpers';
-import { Map } from '../Map/Map';
-import { UserLocations } from '../UserLocations/UserLocations';
 import { RouteComponentProps } from '@reach/router';
 
+import { Popup } from '../Popup/Popup';
+import { UserLocations } from '../UserLocations/UserLocations';
+import { Map } from '../Map/Map';
+
+import { API_URL, removeAccents, getFromStorage } from '../helpers';
 import './homePage.css';
 
 
 export const HomePage: FC<RouteComponentProps> = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [locations, setLocations] = useState([]);
+  const [serverResponse, setServerResponse] = useState({success: false, message: ''});
 
   const handleSearch = async () => {
     if (searchQuery) {
@@ -35,6 +38,33 @@ export const HomePage: FC<RouteComponentProps> = () => {
     }
   }
 
+  const handleSaveButtonClick = (display_name: string, lat: string, 
+    lon: string, address: [] | string, type: string) => {
+    setServerResponse({success: false, message: ''})
+    const obj = getFromStorage();
+    if (obj && obj.token) {
+      const { token } = obj;
+      fetch(`${API_URL}location/save`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          token: token,
+          display_name: display_name.split(',')[0],
+          lat: lat,
+          lon: lon,
+          address: address,
+          type: type
+        })
+      })
+      .then(res => res.json())
+      .then(res => {
+        setServerResponse(res);
+      })
+    }
+  }
+
   const handleInputKeyPress = (e: any) => {
     if (e.key === 'Enter') {
         handleSearch()
@@ -44,7 +74,10 @@ export const HomePage: FC<RouteComponentProps> = () => {
   return (
     <section className="homePage">
       <div className="home">
-        <Map locations={locations}/>
+        <Map
+          locations={locations}
+          handleSaveButtonClick={handleSaveButtonClick}
+        />
         <div className="home__search">
           <input 
             className="home__input"
@@ -58,7 +91,8 @@ export const HomePage: FC<RouteComponentProps> = () => {
           >
           </button>
         </div>
-        <UserLocations setLocations={setLocations}/>
+        <UserLocations setLocations={setLocations} mapServerResponse={serverResponse}/>
+        {serverResponse.message && <Popup data={serverResponse} />}
       </div>
     </section>
   )
@@ -67,8 +101,6 @@ export const HomePage: FC<RouteComponentProps> = () => {
 
 /*
 TODO: 
-- Add popup after save click
-- It should update after adding/removing location
 - Style homePage
 - Hosting and deploy
 */

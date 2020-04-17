@@ -13,9 +13,13 @@ import './Map.css';
 
 type MapProps = {
   locations: LocationType[]
+  handleSaveButtonClick: (
+    display_name: string, lat: string, 
+    lon: string, address: [] | string, type: string
+  ) => void,
 }
 
-export const Map: FC<MapProps> = ({locations}) => {
+export const Map: FC<MapProps> = ({locations, handleSaveButtonClick}) => {
   const [zoom, setZoom] = useState(14);
   const [position, setPosition] = useState({lat: 50.06143, lng: 19.93658});
   
@@ -50,7 +54,7 @@ export const Map: FC<MapProps> = ({locations}) => {
         />
         <FeatureGroup ref={groupRef}>
           {locations.map((location: any) => (
-            <Marker key={location.place_id} {...location}/>
+            <Marker handleSaveButtonClick={handleSaveButtonClick} key={location.place_id} {...location}/>
           ))}
         </FeatureGroup>
         <ZoomControl position="bottomright"/>
