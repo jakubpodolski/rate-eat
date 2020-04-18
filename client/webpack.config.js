@@ -54,6 +54,13 @@ module.exports = {
         test: /\.html/,
         use: ['html-loader']
       },
+      {
+        test: /\.(png|jpe?g|svg)$/,
+        loader: 'file-loader',
+        options: {
+            name: 'assets/[name].[ext]',
+        }
+      }
     ],
   },
 };

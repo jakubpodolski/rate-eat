@@ -9,6 +9,8 @@ import {
 } from '../../helpers';
 import { navigate } from '@reach/router';
 
+import logo from '../../../Static/images/logo.png';
+
 import './Hamburger.css';
 import './Header.css';
 
@@ -55,7 +57,10 @@ export const Header: FC = () => {
   return (
     <header className="header">
       <div className="header__logo">
-        logo
+        <img src={logo} alt="logo" />
+        <span>
+          RATEEat
+        </span>
       </div>
       <div className="header__menuButton">
         <button

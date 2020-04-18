@@ -12,11 +12,11 @@ type Location = {
 }
 
 export const Location: FC<Location> = ({
-display_name,
-type,
-userId,
-handleSortClick,
-handleDeleteClick
+  display_name,
+  type,
+  userId,
+  handleSortClick,
+  handleDeleteClick
 }) => {
   return (
     <div className="location">

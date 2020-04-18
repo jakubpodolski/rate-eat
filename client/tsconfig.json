@@ -12,7 +12,7 @@
     "moduleResolution": "node",
     "baseUrl": "./src",
     "typeRoots": ["node_modules/@types", "src/typings"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
 },
 "include": ["src/**/*"],
 "exclude": ["node_modules"]
