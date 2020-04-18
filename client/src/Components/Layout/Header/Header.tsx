@@ -39,7 +39,7 @@ export const Header: FC = () => {
   const handleToLocationPage = () => {
     let el = document.getElementById("myLocations");
     el?.classList.toggle("userLocations--hidden")
-
+    setIsMenuOpen(false);
   }
 
   useEffect( () => {

@@ -1,6 +1,4 @@
 .userLocations {
-  display: flex;
-  flex-direction: column;
   position: absolute;
   max-height: 90%;
   min-height: 45%;
@@ -8,10 +6,18 @@
   z-index: 450;
   top: 0;
   background: var(--primary-color);
+  border-radius: var(--border-radius);
 }
 
 .userLocations--hidden {
   display: none; 
+}
+
+.userLocations__container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 360px;
 }
 
 .userLocations__inner {
@@ -27,4 +33,39 @@
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+}
+
+.userLocations__closeButton {
+  position: absolute;
+  top: 0;
+  right: -30px;
+  width: 30px;
+  height: 60px;
+  border-style: solid;
+  border-width: 0 0 0 10px;
+  border-color: transparent transparent transparent var(--primary-color);
+  background: var(--secondary-color);
+
+  & button {
+    width: 30px;
+    height: 60px;
+    padding: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 5px 10px 5px 0;
+      border-color: transparent #ffffff transparent transparent;
+    }
+
+    & span {
+      display: none;
+    }
+  }
 }
