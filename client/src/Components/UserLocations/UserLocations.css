@@ -1,4 +1,6 @@
 .userLocations {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   max-height: 90%;
   min-height: 45%;
@@ -9,12 +11,20 @@
 }
 
 .userLocations--hidden {
-  /* display: none;  */
+  display: none; 
 }
 
 .userLocations__inner {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: flex-start; 
   padding: 20px;
+
+}
+
+.userLocations__showAll {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }

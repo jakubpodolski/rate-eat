@@ -94,9 +94,14 @@ export const UserLocations: FC<IUserLocations> = ({setLocations, mapServerRespon
           />
         ))}
       </div>
-      <button onClick={() => setLocations(userLocations)}>
-          Show all locations
-      </button>
+      <div className="userLocations__showAll">
+        <button
+          className="button--secondary"
+          onClick={() => setLocations(userLocations)}
+        >
+            Show all locations
+        </button>
+      </div>
       {serverResponse.message && <Popup data={serverResponse} />}
     </div>
   )
