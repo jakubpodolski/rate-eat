@@ -8,6 +8,8 @@ import {Spinner} from '../Spinner/Spinner';
 
 import {API_URL, APP_NAME, setInStorage} from '../helpers';
 
+import logo from '../../Static/images/logo.png';
+
 import './LandingPage.css'
 
 type LandingPageState = {
@@ -110,21 +112,26 @@ export class LandingPage extends Component<RouteComponentProps, LandingPageState
   render() {
     return (
       <section className="landingPage">
-        {this.state.loading && <Spinner />}
-        {this.state.displaySignup ? (
-          <Signup handleSignup={this.handleSignup}/>
-        ) : (
-          <Login handleLogin={this.handleLogin}/>
-        )}
-        <div className="landingPage__changeForm">
-          <button
-            className="button--secondary"
-            onClick={() => this.setState({ displaySignup: !this.state.displaySignup})}
-          >
-            {this.state.displaySignup ? 'Have an account? Sign in insted' : 'No account? Sign up!'}
-          </button>
+        <div className="ladingPage__container">
+          <div className="landingPage__logo">
+            <img src={logo} alt="logo" />
+          </div>
+          {this.state.loading && <Spinner />}
+          {this.state.displaySignup ? (
+            <Signup handleSignup={this.handleSignup}/>
+          ) : (
+            <Login handleLogin={this.handleLogin}/>
+          )}
+          <div className="landingPage__changeForm">
+            <button
+              className="button--secondary"
+              onClick={() => this.setState({ displaySignup: !this.state.displaySignup})}
+            >
+              {this.state.displaySignup ? 'Have an account? Sign in insted' : 'No account? Sign up!'}
+            </button>
+          </div>
+          {this.state.displayServerResponse && <Popup data={this.state.serverResponse}/>}
         </div>
-        {this.state.displayServerResponse && <Popup data={this.state.serverResponse}/>}
       </section>
     );
   }

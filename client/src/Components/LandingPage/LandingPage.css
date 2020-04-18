@@ -1,5 +1,10 @@
 .landingPage {
+  @mixin grid;
+}
+
+.ladingPage__container {
   grid-column: 5/9;
+  margin-top: 40px;
 
   @media (--tablet) {
     grid-column: 4/10;
@@ -7,7 +12,12 @@
 
   @media (--mobile) {
     grid-column: 2/12;
-  }
+  }  
+}
+
+.landingPage__logo {
+  display: flex;
+  justify-content: center;
 }
 
 .landingPage__changeForm {
