@@ -12,5 +12,8 @@
     "scripts": {
         "client": "cd ./client && npm run-script start",
         "server": "react-scripts build"
+    },
+    "devDependencies": {
+        "dotenv": "^8.2.0"
     }
 }
