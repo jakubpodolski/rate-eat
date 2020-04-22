@@ -10,8 +10,8 @@
         "node-fetch": "^2.6.0"
     },
     "scripts": {
-        "client": "cd ./client && npm run-script start",
-        "server": "react-scripts build"
+        "start": "node src/server.js",
+        "heroku-postbuild": "npm install"
     },
     "devDependencies": {
         "dotenv": "^8.2.0"

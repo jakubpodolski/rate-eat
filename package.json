@@ -4,9 +4,13 @@
     "private": true,
     "dependencies": {},
     "scripts": {
-        "client": "cd ./client && npm run-script start",
-        "server": "cd ./server && node ./src/server.js",
-        "start": "npm run client && npm run server",
-        "install": "cd ./client && npm install && cd ../server && npm install"
+      "client": "cd ./client && npm run-script start",
+      "server": "cd ./server && node ./src/server.js",
+      "start": "npm run server",
+      "install": "cd ./client && npm install && cd ../server && npm install",
+      "heroku-postbuild": "cd ./server && npm install"
+    },
+    "engines": {
+      "node": "12.16.2"
     }
 }

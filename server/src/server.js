@@ -1,8 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path')
-const dotenv = require('dotenv');
+const path = require('path');
 const config = require('./config');
 const app = express();
 const port = process.env.PORT || 8080;
@@ -24,7 +23,6 @@ const corsOptions = {
     credentials: true,
 }
 
-dotenv.config();
 
 mongoose.connect(isDev ? config.db_dev : config.db, { 
     useUnifiedTopology: true,
@@ -34,8 +32,6 @@ mongoose.connect(isDev ? config.db_dev : config.db, {
     .catch(err => console.log(err));;
 
 mongoose.Promise = global.Promise;
-
-console.log(process.env.DB_PASS)
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
