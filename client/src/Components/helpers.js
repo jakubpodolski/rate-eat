@@ -1,4 +1,4 @@
-export const API_URL = 'http://localhost:8080/api/';
+export const API_URL = 'api/';
 export const APP_NAME = 'rate-eat-app';
 
 export const getFromStorage = (key = APP_NAME) => {
