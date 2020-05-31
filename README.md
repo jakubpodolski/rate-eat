@@ -15,7 +15,6 @@ Runs server and client app
 ## Front
   - React
   - TypeSciprt
-  - Material UI (maybe SCSS)
 ## Back
   - NodeJS
   - ExpressJS
@@ -25,7 +24,7 @@ Runs server and client app
   - MongoDB
   - OR PostgreSQL
 
-## Test
+## Test (in TODO)
   - Jest+Enzyme
   - Cypress
     
@@ -33,8 +32,3 @@ Runs server and client app
   - Amazon AWS
   - Elastic Bean Stack
   - Continous Integration
-
-# Possible colors? 
-https://coolors.co/635380-90708c-ace4aa-4c4d49-e1cdb5
-https://coolors.co/7e8287-2a3d45-ace4aa-4c4d49-9da39a
-https://coolors.co/7e8287-2a3d45-ace4aa-4c4d49-d7263d
